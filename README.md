@@ -1,12 +1,11 @@
 # 练习
 ## 训练营资料
 
-
 - typescript基础入门
   - https://list.youku.com/albumlist/show/id_61761165   
   > 密码 eed27c53849758bc
 
-- 各位同学中午好，本次训练营主要是以做题的方式进行。目前小弟这里已经收集了一部分题目，大家可以先预先看一下。在这个网址里边：http://martsforever-demo.gitee.io/template-plain-react-micro-base/
+- 题目地址：http://martsforever-demo.gitee.io/template-plain-react-micro-base/
 
    >  账号密码是：admin / 888888
 
@@ -32,7 +31,7 @@ https://www.bilibili.com/video/BV1EY411s7EY/
 - 2021-12-10 第四天练习
   - 题目地址：https://gitee.com/martsforever-study/typescript-practice/blob/master/exercises/part_04.md
 
-
+- 练习视频：https://www.bilibili.com/video/BV1yq4y1q7bU?spm_id_from=333.999.0.0
 
 ### 作业对应的文件
 
