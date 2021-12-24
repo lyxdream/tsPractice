@@ -12,13 +12,13 @@ function hello(name: string): void {
   console.log('hello', name)
 }
 hello('yx')
+
 // -----------------------------
 type GetName = (firstName: string, lastName: string) => string
 let getName: GetName = function (firstName: string, lastName: string): string {
   return firstName + lastName
 }
 // -----------------------------
-
 function print(name: string, age?: number): void {
   console.log(name, age)
 }

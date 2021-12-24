@@ -2,15 +2,7 @@ export {}
 class Father {}
 class Child extends Father {}
 
-/*
-function Father() {}
-__extends(Child, Father);
-function Child(...args) {
-    return Father !== null && Father.apply(this, arguments) || this;
-}
-return Child
-*/
-
+// 编译之后的简化版
 /*
 var extendStatics = function (Child, Father) {
   extendStatics = function (Child, Father) {
@@ -30,16 +22,21 @@ var __extends = function (Child, Father) {
   let temp = new temp()
   temp.prototype = Father.prototype
   Child.prototype = temp
-  // Child.prototype =
-  //   Father === null ? Object.create(Father) : ((__.prototype = Father.prototype), new __())
+  
+  可以替换为:
+   Child.prototype = Object.create(Father.prototype)
 }
-
-
 function Father() {}
-__extends(Child, Father);
+__extends(Child, Father)
 function Child(...args) {
-    return Father(...args)
+  return Father(...args)
 }
 return Child
-
 */
+
+// create方法的实现
+// function create(prototype) {
+//   let temp = new temp()
+//   temp.prototype = prototype
+//   return temp
+// }

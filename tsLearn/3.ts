@@ -58,6 +58,7 @@ class User {
 let user = new User('yx')
 user.name = 'li'
 console.log(user.name)
+
 /*
 ---------------------------------------------------
 readonly
