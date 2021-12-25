@@ -153,4 +153,91 @@ namespace d {
   p.getName() //JIAGOU
 }
 
-//3、方法装饰器
+//3、参数装饰器
+namespace e{
+  //IOC里用到  //nest.js大量的用到了参数修饰器
+  //target 静态成员就是构造函数  非静态成员就是就是构造函数的原型   方法名称，索引位置
+  function addAge(target:any,methodName:string,paramIndex:number){
+    // console.log(target,methodName,paramIndex)    //Person {} login 1
+    target.age = 10;
+  }
+  class Person{
+    age!:number;
+    login(userName:string,@addAge password:string){
+        console.log(this.age,userName,password,'---')  //10 yx 1234 ---
+    }
+  }
+  let p = new Person()
+  p.login('yx','1234')
+}
+
+// 4、装饰器的执行顺序
+
+namespace f{
+  //类装饰器
+  function classDecorator1(){
+    return function(target:any){
+      console.log('classDecorator1')
+    }
+  }
+  function classDecorator2(){
+    return function(target:any){
+      console.log('classDecorator2')
+    }
+  }
+   //属性装饰器
+  function propertyDecorator(name:string){
+    return function(target: any, propertyKey: string){
+      console.log('propertyDecorator',propertyKey,name)
+    }
+  }
+  //方法装饰器
+  function methodDecorator(){
+    return function(target: any, propertyKey: string,descriptor: PropertyDescriptor){
+      console.log('methodDecorator',propertyKey)
+    }
+  }
+
+  //参数装饰器
+  function parameterDecorator(){
+    return function(arget:any,methodName:string,paramIndex:number){
+      console.log('parameterDecorator',methodName,paramIndex)
+    }
+  }
+
+  @classDecorator1()
+  @classDecorator2()
+  class Person{
+    @propertyDecorator('name')
+    name:string='';
+    @propertyDecorator('age')
+    age:number = 10;
+    @methodDecorator()
+    hello(@parameterDecorator() p1:string,@parameterDecorator() p2:string){
+
+    }
+  }
+}
+
+/**
+ *执行结果
+propertyDecorator name name
+propertyDecorator age age
+parameterDecorator hello 1
+parameterDecorator hello 0
+methodDecorator hello
+classDecorator2
+classDecorator1
+ */
+
+/**
+ * 执行规律
+ * 1.类装饰器最后执行，且后面的累装饰器先执行
+ * 2.方法和方法参数中的装饰器，先执行参数装饰器
+ * 3.方法和属性装饰器谁在前面，谁在前面先执行谁
+ * 
+ * 先内后外执行  (先执行类里面的方法和属性，再执行类装饰器)
+ * 类比组件 componentDidMount  //先上后下  先内后外
+*/
+
+
